@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="EditPageDef"
+                Package="mnj.mfg.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MnjMfgCutissuanceView1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjMfgCutissuanceView1Iterator"/>
+    <iterator Binds="bundleVO1" RangeSize="5000"
+              DataControl="AppModuleDataControl" id="bundleVO1Iterator"/>
+    <searchRegion Binds="bundleVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="bundleVO1Query"/>
+    <iterator Binds="LineVO1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="LineVO1Iterator"/>
+    <searchRegion Binds="LineVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="LineVO1Query"/>
+    <iterator Binds="MnjMfgCutissuanceSzlineView1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjMfgCutissuanceSzlineView1Iterator"/>
+    <searchRegion Binds="MnjMfgCutissuanceSzlineView1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="MnjMfgCutissuanceSzlineView1Query"/>
+    <iterator Binds="RecBundleVO1" RangeSize="1000"
+              DataControl="AppModuleDataControl" id="RecBundleVO1Iterator"/>
+    <searchRegion Binds="RecBundleVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="RecBundleVO1Query"/>
+    <iterator Binds="ThirdPartyBundleVO1" RangeSize="1000"
+              DataControl="AppModuleDataControl"
+              id="ThirdPartyBundleVO1Iterator"/>
+    <searchRegion Binds="ThirdPartyBundleVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="ThirdPartyBundleVO1Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="RangrefNo">
+      <AttrNames>
+        <Item Value="RangrefNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="CutissueDt">
+      <AttrNames>
+        <Item Value="CutissueDt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="Remarks">
+      <AttrNames>
+        <Item Value="Remarks"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="RangeNumber">
+      <AttrNames>
+        <Item Value="RangeNumber"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="CutjobId">
+      <AttrNames>
+        <Item Value="CutjobId"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="AppModuleDataControl"/>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="Description">
+      <AttrNames>
+        <Item Value="Description"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator" Uses="LOV_Buyer"
+                  id="Buyer"/>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator" Uses="LOV_BpoNo"
+                  id="BpoNo"/>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator" Uses="LOV_Obno"
+                  id="Obno"/>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="SalesorderId">
+      <AttrNames>
+        <Item Value="SalesorderId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="BuyerId">
+      <AttrNames>
+        <Item Value="BuyerId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="bundleVO1Iterator" id="bundleVO1">
+      <nodeDefinition DefName="mnj.mfg.model.lov.bundleVO" Name="bundleVO10">
+        <AttrNames>
+          <Item Value="BundleNo"/>
+          <Item Value="SizeValue"/>
+          <Item Value="FromPieceNo"/>
+          <Item Value="ToPieceNo"/>
+          <Item Value="Shade"/>
+          <Item Value="MultiSelect" Binds="MultiSelect"/>
+          <Item Value="Flag" Binds="Flag"/>
+          <Item Value="TotalQty"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="bundleVO1Iterator" id="MultiSelect"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MultiSelect"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="setPopUpWhereClause"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="setPopUpWhereClause"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="populateBundles"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="populateBundles"
+                  IsViewObjectMethod="false"/>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="OrderQty">
+      <AttrNames>
+        <Item Value="OrderQty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="BalanceQty">
+      <AttrNames>
+        <Item Value="BalanceQty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="CutissueNo">
+      <AttrNames>
+        <Item Value="CutissueNo"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator" Uses="LOV_LineNo"
+                  id="LineNo1"/>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator"
+                  Uses="LOV_CutNumber" id="CutNumber"/>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator"
+                  Uses="LOV_IssueTo" id="IssueTo"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <tree IterBinding="LineVO1Iterator" id="LineVO1">
+      <nodeDefinition DefName="mnj.mfg.model.entities.views.LineVO"
+                      Name="LineVO10">
+        <AttrNames>
+          <Item Value="Quantity"/>
+          <Item Value="CutissueLineId"/>
+          <Item Value="CutissueId"/>
+          <Item Value="CutNumber"/>
+          <Item Value="IssuedQuantity"/>
+          <Item Value="BelancQty"/>
+          <Item Value="CutQty"/>
+          <Item Value="Attribute1"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="LineVO1Iterator" id="CreateInsert1"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="LineVO1Iterator" id="Delete1"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <tree IterBinding="MnjMfgCutissuanceSzlineView1Iterator"
+          id="MnjMfgCutissuanceSzlineView1">
+      <nodeDefinition DefName="mnj.mfg.model.views.MnjMfgCutissuanceSzlineView"
+                      Name="MnjMfgCutissuanceSzlineView10">
+        <AttrNames>
+          <Item Value="DivisionId"/>
+          <Item Value="CutissueId"/>
+          <Item Value="CutissueNo"/>
+          <Item Value="SzlineNo"/>
+          <Item Value="SizeId"/>
+          <Item Value="BandelNo"/>
+          <Item Value="ShadeId"/>
+          <Item Value="SizBndId"/>
+          <Item Value="PlyFrom"/>
+          <Item Value="PlyTo"/>
+          <Item Value="IssQuantity"/>
+          <Item Value="SrqNumberFrm"/>
+          <Item Value="SrqNumberTo"/>
+          <Item Value="Remarks"/>
+          <Item Value="LastUpdateDate"/>
+          <Item Value="LastUpdatedBy"/>
+          <Item Value="CreationDate"/>
+          <Item Value="CreatedBy"/>
+          <Item Value="TransferQty"/>
+          <Item Value="TotalQty"/>
+          <Item Value="BalanceQty"/>
+          <Item Value="CutissueLineId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MnjMfgCutissuanceSzlineView1Iterator"
+            id="CreateInsert2" RequiresUpdateModel="true"
+            Action="createInsertRow"/>
+    <action IterBinding="MnjMfgCutissuanceSzlineView1Iterator" id="Delete2"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <methodAction id="selectAllLines"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="selectAllLines"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="flag" NDType="java.lang.String"/>
+    </methodAction>
+    <button IterBinding="bundleVO1Iterator" id="Flag" DTSupportsMRU="false"
+            StaticList="true">
+      <AttrNames>
+        <Item Value="Flag"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="Attribute1">
+      <AttrNames>
+        <Item Value="Attribute1"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator"
+                  Uses="LOV_RationNo" id="RationNo"/>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="DeliveryChallanNo">
+      <AttrNames>
+        <Item Value="DeliveryChallanNo"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator"
+                  Uses="LOV_IssueOrgName" id="IssueOrgName"/>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="IssueToOrg">
+      <AttrNames>
+        <Item Value="IssueToOrg"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator"
+                  Uses="LOV_RecDocNo" id="RecDocNo"/>
+    <tree IterBinding="RecBundleVO1Iterator" id="RecBundleVO1">
+      <nodeDefinition DefName="mnj.mfg.model.lov.RecBundleVO"
+                      Name="RecBundleVO10">
+        <AttrNames>
+          <Item Value="BundleNo"/>
+          <Item Value="SizeValue"/>
+          <Item Value="FromPieceNo"/>
+          <Item Value="ToPieceNo"/>
+          <Item Value="Shade"/>
+          <Item Value="TotalQty"/>
+          <Item Value="CutNo"/>
+          <Item Value="IssueDoc"/>
+          <Item Value="Flag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="populateBundlesRec"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="populateBundlesRec"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="setPopUpWhereClauseRec"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="setPopUpWhereClauseRec"
+                  IsViewObjectMethod="false"/>
+    <tree IterBinding="ThirdPartyBundleVO1Iterator" id="ThirdPartyBundleVO1">
+      <nodeDefinition DefName="mnj.mfg.model.lov.ThirdPartyBundleVO"
+                      Name="ThirdPartyBundleVO10">
+        <AttrNames>
+          <Item Value="BundleNo"/>
+          <Item Value="SizeValue"/>
+          <Item Value="FromPieceNo"/>
+          <Item Value="ToPieceNo"/>
+          <Item Value="Shade"/>
+          <Item Value="TotalQty"/>
+          <Item Value="CutNo"/>
+          <Item Value="CutissueNo"/>
+          <Item Value="Flag"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="populateBundlesThirdParty"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="populateBundlesThirdParty"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="setPopUpWhereClauseThirdParty"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod"
+                  MethodName="setPopUpWhereClauseThirdParty"
+                  IsViewObjectMethod="false"/>
+    <methodAction id="CreateRequisition"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="CreateRequisition"
+                  IsViewObjectMethod="false"
+                  ReturnName="data.AppModuleDataControl.methodResults.CreateRequisition_AppModuleDataControl_dataProvider_CreateRequisition_result"/>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="Qty_Total">
+      <AttrNames>
+        <Item Value="Qty_Total"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator"
+                     id="Issued_Qty_Tot">
+      <AttrNames>
+        <Item Value="Issued_Qty_Tot"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="Season">
+      <AttrNames>
+        <Item Value="Season"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="Style">
+      <AttrNames>
+        <Item Value="Style"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="PocId">
+      <AttrNames>
+        <Item Value="PocId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="Colour">
+      <AttrNames>
+        <Item Value="Colour"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="MnjMfgCutissuanceView1Iterator" id="Wash">
+      <AttrNames>
+        <Item Value="Wash"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false"
+                  IterBinding="MnjMfgCutissuanceView1Iterator"
+                  Uses="LOV_SystemId" id="SystemId"/>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,1190 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MnjMfgCutissuanceView"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="mnj.mfg.model.views.MnjMfgCutissuanceViewRowImpl"
+  ComponentClass="mnj.mfg.model.views.MnjMfgCutissuanceViewImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|Prog|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="p_org_id"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.context.sessionScope.orgId]]></TransientExpression>
+  </Variable>
+  <Variable
+    Name="pCuttingIsuueNo"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="SaleOrdersLov1"
+    ViewObjectName="mnj.mfg.model.lov.views.SaleOrdersLov"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="BuyerVO1"
+    ViewObjectName="mnj.mfg.model.lov.views.BuyerVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="Style1"
+    ViewObjectName="mnj.mfg.model.lov.views.Style">
+    <ParameterMap>
+      <PIMap Variable="p_buyerId">
+        <TransientExpression><![CDATA[BuyerId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="BPOVo1"
+    ViewObjectName="mnj.mfg.model.lov.views.BPOVo">
+    <ParameterMap>
+      <PIMap Variable="p_buyerId">
+        <TransientExpression><![CDATA[BuyerId]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="p_style">
+        <TransientExpression><![CDATA[Style]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="STNVo1"
+    ViewObjectName="mnj.mfg.model.lov.views.STNVo">
+    <ParameterMap>
+      <PIMap Variable="p_orderID">
+        <TransientExpression><![CDATA[SalesorderId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="LineLov1"
+    ViewObjectName="mnj.mfg.model.lov.views.LineLov"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="cutLOV1"
+    ViewObjectName="mnj.mfg.model.lov.views.cutLOV">
+    <ParameterMap>
+      <PIMap Variable="bpo_no">
+        <TransientExpression><![CDATA[BpoNo]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="IssueToStitchLov1"
+    ViewObjectName="mnj.mfg.model.lov.views.IssueToStitchLov"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="rationPlanLov1"
+    ViewObjectName="mnj.mfg.model.lov.views.rationPlanLov">
+    <ViewCriteriaUsage
+      Name="rationPlanLovCriteria"
+      FullName="mnj.mfg.model.lov.views.rationPlanLov.rationPlanLovCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="buyer_id">
+        <TransientExpression><![CDATA[BuyerId]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="color">
+        <TransientExpression><![CDATA[Color]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="season">
+        <TransientExpression><![CDATA[Season]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="style">
+        <TransientExpression><![CDATA[Style]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="operatingUnitsVO1"
+    ViewObjectName="mnj.mfg.model.lov.operatingUnitsVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="RecTypeLoV1"
+    ViewObjectName="mnj.mfg.model.lov.views.RecTypeLoV">
+    <ParameterMap>
+      <PIMap Variable="P_REC_TYPE">
+        <TransientExpression><![CDATA[IssueTo]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="SystemIdLov1"
+    ViewObjectName="mnj.mfg.model.lov.SystemIdLov"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="RatioPlanNumberLov1"
+    ViewObjectName="mnj.mfg.model.lov.RatioPlanNumberLov"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="SystemLovOpMiz1"
+    ViewObjectName="mnj.mfg.model.lov.SystemLovOpMiz"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_OrderNumber"
+    ListVOName="SaleOrdersLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_OrderNumber_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OrderNumber"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="SalesorderId"/>
+      <Item Value="Description"/>
+      <Item Value="InventoryItemId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="OrderNumber"/>
+      <Item Value="HeaderId"/>
+      <Item Value="Description"/>
+      <Item Value="InventoryItemId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Description"/>
+      <Item Value="OrderNumber"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Buyer"
+    ListVOName="BuyerVO1"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Buyer"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="BuyerId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CustomerName"/>
+      <Item Value="CustomerId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CustomerName"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_BpoNo"
+    ListVOName="BPOVo1"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="BpoNo"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="SalesorderId"/>
+      <Item Value="DivisionId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="BpoNo"/>
+      <Item Value="HeaderId"/>
+      <Item Value="OrgId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="BpoNo"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Obno"
+    ListVOName="STNVo1"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Obno"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Description"/>
+      <Item Value="InventoryItemId"/>
+      <Item Value="OrderQty"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Stn"/>
+      <Item Value="Description"/>
+      <Item Value="InventoryItemId"/>
+      <Item Value="OrderedQty"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Stn"/>
+      <Item Value="Description"/>
+      <Item Value="OrderedQty"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_LineNo"
+    ListVOName="LineLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_LineNo_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="LineNo"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="FlexValue"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="FlexValue"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_CutNumber"
+    ListVOName="cutLOV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_CutNumber_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CutNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CutNo"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CutNo"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_IssueTo"
+    ListVOName="IssueToStitchLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_IssueTo_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IssueTo"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Issuedtostich"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Issuedtostich"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_RationNo"
+    ListVOName="RatioPlanNumberLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_RationNo_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="RationNo"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="RatioplanNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="RatioplanNumber"/>
+      <Item Value="PocId"/>
+      <Item Value="BuyerName"/>
+      <Item Value="Season"/>
+      <Item Value="Style"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_IssueOrgName"
+    ListVOName="operatingUnitsVO1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_IssueOrgName_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="IssueOrgName"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="IssueToOrg"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="OrganizationId"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_RecDocNo"
+    ListVOName="RecTypeLoV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_RecDocNo_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="RecDocNo"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="IssueDoc"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SystemId"
+    ListVOName="SystemLovOpMiz1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_SystemId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="SystemId"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="BuyerId"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="SystemId"/>
+      <Item Value="BuyerId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="SystemId"/>
+      <Item Value="PocId"/>
+      <Item Value="Season"/>
+      <Item Value="Style"/>
+      <Item Value="Color"/>
+      <Item Value="Wash"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT distinct 
+       MnjMfgCutissuance.CREATED_BY,
+       MnjMfgCutissuance.CREATION_DATE,
+       MnjMfgCutissuance.CUT_ASSEM_ID,
+       MnjMfgCutissuance.CUTFRM_DIVISION_ID,
+       MnjMfgCutissuance.CUTISSUE_DT,
+       MnjMfgCutissuance.CUTISSUE_ID,
+       MnjMfgCutissuance.CUTISSUE_NO,
+       MnjMfgCutissuance.CUTJOB_ID,
+       MnjMfgCutissuance.CUTT_FROM_DIVID,
+       MnjMfgCutissuance.DIVISION_ID,
+       MnjMfgCutissuance.FGITEM_CODE,
+       MnjMfgCutissuance.INSEAM_ID,
+       MnjMfgCutissuance.INVENTORY_ITEM_ID,
+       MnjMfgCutissuance.LAST_UPDATE_DATE,
+       MnjMfgCutissuance.LAST_UPDATED_BY,
+       MnjMfgCutissuance.LINE_NO,
+       MnjMfgCutissuance.LOT_NUMBER,
+       MnjMfgCutissuance.OBNO,
+       MnjMfgCutissuance.OE_SOLINE_ID,
+       MnjMfgCutissuance.POSTED_STATUS,
+       MnjMfgCutissuance.POSTED_STATUS_TMP,
+       MnjMfgCutissuance.RANGE_ID,
+       MnjMfgCutissuance.RANGE_NUMBER,
+       MnjMfgCutissuance.RANGREF_NO,
+       MnjMfgCutissuance.REMARKS,
+       MnjMfgCutissuance.SALESORDER_ID,
+       MnjMfgCutissuance.SO_LINE,
+       MnjMfgCutissuance.STITCH_ASSEM_ID,
+       MnjMfgCutissuance.STITCH_JOB_ID,
+       MnjMfgCutissuance.SUB_INVENTORY,
+       MnjMfgCutissuance.TRANSACTION_STATUS,
+       (select b.DESCRIPTION
+          from mtl_system_items_b b
+         where b.ORGANIZATION_ID = 353
+           and b.INVENTORY_ITEM_ID = MnjMfgCutissuance.Inventory_Item_Id) description,
+       MnjMfgCutissuance.Bpo_No,
+      -- MnjMfgCutissuance.Style,
+       (select hp.KNOWN_AS
+from hz_cust_accounts hca,
+     hz_parties hp,
+     ar_customers ac
+where hp.PARTY_ID = hca.PARTY_ID
+and hca.CUST_ACCOUNT_ID = ac.CUSTOMER_ID and AC.CUSTOMER_ID = MnjMfgCutissuance.Buyer_Id) buyer,
+       MnjMfgCutissuance.Buyer_Id,
+       MnjMfgCutissuance.Order_Qty,
+       NVL(MnjMfgCutissuance.Order_Qty, 0) -
+       (SELECT NVL(SUM(L.Iss_Quantity), 0)
+          FROM MNJ_MFG_CUTISSUANCE H, MNJ_MFG_CUTISSUANCE_SZLINE L
+         WHERE H.CUTISSUE_ID = L.CUTISSUE_ID
+           AND H.OBNO = MnjMfgCutissuance.Obno) BALANCE_QTY,
+          -- MnjMfgCutissuance.Season,
+           MnjMfgCutissuance.Color,
+MnjMfgCutissuance.ISSUE_TO,
+MnjMfgCutissuance.ATTRIBUTE1,
+MnjMfgCutissuance.Ration_No,
+           MnjMfgCutissuance.Delivery_Challan_No,
+           MnjMfgCutissuance.Ref_Doc_No,
+           MnjMfgCutissuance.Cut_Number,
+           MnjMfgCutissuance.THIRD_PARTY,
+           MnjMfgCutissuance.ISSUE_TO_ORG,
+(select h.name from hr_operating_units h WHERE h.organization_id = MnjMfgCutissuance.ISSUE_TO_ORG) ISSUE_ORG_NAME,
+           MnjMfgCutissuance.RECEIVE_TYPE,
+           MnjMfgCutissuance.REC_DOC_NO,
+(SELECT DECODE(StyleLineEO.TRACK_BASIS,'Style Name',StyleLineEO.STYLE_NAME,'Style Number',StyleLineEO.STYLE_NUMBER)
+       FROM PWC_MFG_BSS_STYLE_L StyleLineEO,
+            pwc_mfg_bss_buyer_h pwcmfgbssbuyerh       
+       WHERE StyleLineEO.STYLE_IDENTIFIER = MnjMfgCutissuance.Style
+       AND   pwcmfgbssbuyerh.BUYER_ID = MnjMfgCutissuance.Buyer_Id
+       --AND   pwcmfgbssbuyerh.ORG_ID = HeaderEO.ORG_ID 
+       AND   StyleLineEO.HEADER_ID = pwcmfgbssbuyerh.HEADER_ID
+       AND   rownum = 1) CURRENT_STYLE,
+       (SELECT SeasonDetailEO.SEASON_NAME
+       FROM PWC_MFG_BSS_STYLE_L  StyleLineEO,
+            pwc_mfg_bss_buyer_h  pwcmfgbssbuyerh,
+            PWC_MFG_BSS_SEASON_D SeasonDetailEO   
+       WHERE StyleLineEO.STYLE_IDENTIFIER = MnjMfgCutissuance.STYLE
+AND   SeasonDetailEO.SEASON_IDENTIFIER = MnjMfgCutissuance.SEASON
+       AND   pwcmfgbssbuyerh.BUYER_ID = MnjMfgCutissuance.BUYER_ID
+       --AND   pwcmfgbssbuyerh.ORG_ID = HeaderEO.ORG_ID 
+       AND   StyleLineEO.HEADER_ID = pwcmfgbssbuyerh.HEADER_ID
+       AND   SeasonDetailEO.LINE_ID = StyleLineEO.LINE_ID 
+       AND   rownum = 1) CURRENT_SEASON,
+   case when MnjMfgCutissuance.ISSUE_TO like 'Issued%' then 'Issue'
+       when MnjMfgCutissuance.ISSUE_TO like 'Receive%' then 'Receive' else null 
+       end Transaction_Type,
+       MnjMfgCutissuance.SYSTEM_ID,
+         s.POC_ID, 
+        s.SEASON,
+        s. STYLE,
+        s.color as COLOUR,
+        s.WASH
+  FROM MNJ_MFG_CUTISSUANCE MnjMfgCutissuance ,XX_STYLE_COLOR_WASH_V  s
+ WHERE MnjMfgCutissuance.DIVISION_ID =:p_org_id
+  and MnjMfgCutissuance.system_id=s.system_id
+ ORDER BY CUTISSUE_ID desc]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="MnjMfgCutissuance"
+    Entity="mnj.mfg.model.entities.MnjMfgCutissuance"/>
+  <ViewAttribute
+    Name="CreatedBy"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CREATED_BY"/>
+  <ViewAttribute
+    Name="CreationDate"
+    PrecisionRule="true"
+    EntityAttrName="CreationDate"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CREATION_DATE"/>
+  <ViewAttribute
+    Name="CutAssemId"
+    PrecisionRule="true"
+    EntityAttrName="CutAssemId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CUT_ASSEM_ID"/>
+  <ViewAttribute
+    Name="CutfrmDivisionId"
+    PrecisionRule="true"
+    EntityAttrName="CutfrmDivisionId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CUTFRM_DIVISION_ID"/>
+  <ViewAttribute
+    Name="CutissueDt"
+    PrecisionRule="true"
+    EntityAttrName="CutissueDt"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CUTISSUE_DT">
+    <TransientExpression><![CDATA[adf.currentDate]]></TransientExpression>
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.CutissueDt_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.CutissueDt_FMT_FORMAT"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CutissueId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CutissueId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CUTISSUE_ID"/>
+  <ViewAttribute
+    Name="CutissueNo"
+    PrecisionRule="true"
+    EntityAttrName="CutissueNo"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CUTISSUE_NO">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.CutissueNo_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CutjobId"
+    PrecisionRule="true"
+    EntityAttrName="CutjobId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CUTJOB_ID"/>
+  <ViewAttribute
+    Name="CuttFromDivid"
+    PrecisionRule="true"
+    EntityAttrName="CuttFromDivid"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="CUTT_FROM_DIVID"/>
+  <ViewAttribute
+    Name="DivisionId"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="DIVISION_ID"/>
+  <ViewAttribute
+    Name="FgitemCode"
+    PrecisionRule="true"
+    EntityAttrName="FgitemCode"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="FGITEM_CODE">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="InseamId"
+    PrecisionRule="true"
+    EntityAttrName="InseamId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="INSEAM_ID"/>
+  <ViewAttribute
+    Name="InventoryItemId"
+    PrecisionRule="true"
+    EntityAttrName="InventoryItemId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="INVENTORY_ITEM_ID"/>
+  <ViewAttribute
+    Name="LastUpdateDate"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateDate"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="LAST_UPDATE_DATE"/>
+  <ViewAttribute
+    Name="LastUpdatedBy"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdatedBy"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="LAST_UPDATED_BY"/>
+  <ViewAttribute
+    Name="LineNo"
+    PrecisionRule="true"
+    EntityAttrName="LineNo"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="LINE_NO"
+    LOVName="LOV_LineNo">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LotNumber"
+    PrecisionRule="true"
+    EntityAttrName="LotNumber"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="LOT_NUMBER"/>
+  <ViewAttribute
+    Name="Obno"
+    PrecisionRule="true"
+    EntityAttrName="Obno"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="OBNO"
+    LOVName="LOV_Obno">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OeSolineId"
+    PrecisionRule="true"
+    EntityAttrName="OeSolineId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="OE_SOLINE_ID"/>
+  <ViewAttribute
+    Name="PostedStatus"
+    PrecisionRule="true"
+    EntityAttrName="PostedStatus"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="POSTED_STATUS"/>
+  <ViewAttribute
+    Name="PostedStatusTmp"
+    PrecisionRule="true"
+    EntityAttrName="PostedStatusTmp"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="POSTED_STATUS_TMP"/>
+  <ViewAttribute
+    Name="RangeId"
+    PrecisionRule="true"
+    EntityAttrName="RangeId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="RANGE_ID"/>
+  <ViewAttribute
+    Name="RangeNumber"
+    PrecisionRule="true"
+    EntityAttrName="RangeNumber"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="RANGE_NUMBER"/>
+  <ViewAttribute
+    Name="RangrefNo"
+    PrecisionRule="true"
+    EntityAttrName="RangrefNo"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="RANGREF_NO"/>
+  <ViewAttribute
+    Name="Remarks"
+    PrecisionRule="true"
+    EntityAttrName="Remarks"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="REMARKS">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SalesorderId"
+    PrecisionRule="true"
+    EntityAttrName="SalesorderId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="SALESORDER_ID"/>
+  <ViewAttribute
+    Name="SoLine"
+    PrecisionRule="true"
+    EntityAttrName="SoLine"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="SO_LINE"/>
+  <ViewAttribute
+    Name="StitchAssemId"
+    PrecisionRule="true"
+    EntityAttrName="StitchAssemId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="STITCH_ASSEM_ID"/>
+  <ViewAttribute
+    Name="StitchJobId"
+    PrecisionRule="true"
+    EntityAttrName="StitchJobId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="STITCH_JOB_ID"/>
+  <ViewAttribute
+    Name="SubInventory"
+    PrecisionRule="true"
+    EntityAttrName="SubInventory"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="SUB_INVENTORY"/>
+  <ViewAttribute
+    Name="TransactionStatus"
+    PrecisionRule="true"
+    EntityAttrName="TransactionStatus"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="TRANSACTION_STATUS"/>
+  <ViewAttribute
+    Name="Description"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DESCRIPTION"
+    Expression="DESCRIPTION"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BpoNo"
+    PrecisionRule="true"
+    EntityAttrName="BpoNo"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="BPO_NO"
+    LOVName="LOV_BpoNo">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Buyer"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="500"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BUYER"
+    Expression="BUYER"
+    SQLType="VARCHAR"
+    LOVName="LOV_Buyer">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BuyerId"
+    PrecisionRule="true"
+    EntityAttrName="BuyerId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="BUYER_ID">
+    <Properties>
+      <SchemaBasedProperties>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OrderQty"
+    PrecisionRule="true"
+    EntityAttrName="OrderQty"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="ORDER_QTY"/>
+  <ViewAttribute
+    Name="BalanceQty"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="BALANCE_QTY"
+    Expression="BALANCE_QTY"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Color"
+    PrecisionRule="true"
+    AliasName="COLOR"
+    EntityAttrName="Color"
+    EntityUsage="MnjMfgCutissuance">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.Color_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <AUTOSUBMIT
+          Value="true"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IssueTo"
+    PrecisionRule="true"
+    EntityAttrName="IssueTo"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="ISSUE_TO"
+    LOVName="LOV_IssueTo">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Attribute1"
+    PrecisionRule="true"
+    EntityAttrName="Attribute1"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="ATTRIBUTE1">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.Attribute1_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RationNo"
+    PrecisionRule="true"
+    AliasName="RATION_NO"
+    EntityAttrName="RationNo"
+    EntityUsage="MnjMfgCutissuance"
+    LOVName="LOV_RationNo">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DeliveryChallanNo"
+    PrecisionRule="true"
+    AliasName="DELIVERY_CHALLAN_NO"
+    EntityAttrName="DeliveryChallanNo"
+    EntityUsage="MnjMfgCutissuance">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RefDocNo"
+    PrecisionRule="true"
+    AliasName="REF_DOC_NO"
+    EntityAttrName="RefDocNo"
+    EntityUsage="MnjMfgCutissuance">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CutNumber"
+    PrecisionRule="true"
+    AliasName="CUT_NUMBER"
+    EntityAttrName="CutNumber"
+    EntityUsage="MnjMfgCutissuance"
+    LOVName="LOV_CutNumber">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+        <LABEL
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.CutNumber_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ThirdParty"
+    PrecisionRule="true"
+    EntityAttrName="ThirdParty"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="THIRD_PARTY"/>
+  <ViewAttribute
+    Name="IssueToOrg"
+    PrecisionRule="true"
+    EntityAttrName="IssueToOrg"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="ISSUE_TO_ORG"/>
+  <ViewAttribute
+    Name="IssueOrgName"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ISSUE_ORG_NAME"
+    Expression="ISSUE_ORG_NAME"
+    SQLType="VARCHAR"
+    LOVName="LOV_IssueOrgName">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ReceiveType"
+    PrecisionRule="true"
+    EntityAttrName="ReceiveType"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="RECEIVE_TYPE">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RecDocNo"
+    PrecisionRule="true"
+    EntityAttrName="RecDocNo"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="REC_DOC_NO"
+    LOVName="LOV_RecDocNo">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CurrentStyle"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="250"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CURRENT_STYLE"
+    Expression="CURRENT_STYLE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="250"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.CurrentStyle_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CurrentSeason"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="250"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CURRENT_SEASON"
+    Expression="CURRENT_SEASON"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="250"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.MnjMfgCutissuanceView.CurrentSeason_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TransactionType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="7"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TRANSACTION_TYPE"
+    Expression="TRANSACTION_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SystemId"
+    PrecisionRule="true"
+    EntityAttrName="SystemId"
+    EntityUsage="MnjMfgCutissuance"
+    AliasName="SYSTEM_ID"
+    LOVName="LOV_SystemId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PocId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="540"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="POC_ID"
+    Expression="POC_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="540"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Season"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="500"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SEASON"
+    Expression="SEASON"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="500"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Style"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="500"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STYLE"
+    Expression="STYLE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="500"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Colour"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="500"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="COLOUR"
+    Expression="COLOUR"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="500"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Wash"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="WASH"
+    Expression="WASH"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OrderNumber"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="ORDER_NUMBER"
+    SQLType="NUMERIC"
+    LOVName="LOV_OrderNumber">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="LineQtyTotal"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <TransientExpression><![CDATA[MnjMfgCutissuanceSzlineView.sum("TotalQty")]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Qty_Total"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <TransientExpression><![CDATA[LineVO.sum("Quantity")]]></TransientExpression>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Issued_Qty_Tot"
+    IsUpdateable="false"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC">
+    <TransientExpression><![CDATA[LineVO.sum("IssuedQuantity")]]></TransientExpression>
+  </ViewAttribute>
+  <ViewLinkAccessor
+    Name="MnjMfgCutissuanceSzlineView"
+    ViewLink="mnj.mfg.model.views.CutissueIdFkLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ViewLinkAccessor
+    Name="LineVO"
+    ViewLink="mnj.mfg.model.views.HeaderLineVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="mnj.mfg.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

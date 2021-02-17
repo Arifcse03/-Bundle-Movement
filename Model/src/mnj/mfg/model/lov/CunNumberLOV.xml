@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CunNumberLOV"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="mnj.mfg.model.lov.CunNumberLOVRowImpl"
+  ComponentClass="mnj.mfg.model.lov.CunNumberLOVImpl">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="mnj.mfg.model.lov.CunNumberLOV_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="p_trans_type"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.context.sessionScope.TransactionTypeNew]]></TransientExpression>
+  </Variable>
+  <Variable
+    Name="p_cutplanno"
+    Kind="where"
+    Type="java.lang.String">
+    <TransientExpression><![CDATA[adf.context.sessionScope.RationNo]]></TransientExpression>
+  </Variable>
+  <SQLQuery>
+    <![CDATA[SELECT SUM (MMCD.CUT_QTY) total_pcs,
+its.issue_qty total_issue,
+MMCL.CUT_NO cut_no,
+MMCH.R_PLAN_NO ratioplan_number, --sum(its.issue_qty) --added by Azhar*/
+MMCL.MARKER_ID
+FROM MNJ_MFG_CUTLYRCNTRL_D MMCD,
+MNJ_MFG_CUTLYRCNTRL_L MMCL,
+MNJ_MFG_CUTLYRCNTRL_H MMCH,
+( SELECT mm.ATTRIBUTE1 cut_no, SUM (mm.ISSUED_QUANTITY) issue_qty
+FROM mnj_mfg_cutissuance_line mm, MNJ_MFG_CUTISSUANCE mmc
+WHERE mmc.CUTISSUE_ID = mm.CUTISSUE_ID
+AND mmc.ISSUE_TO = :p_trans_type
+GROUP BY mm.ATTRIBUTE1) its /* sub query added by Azhar*/
+WHERE MMCD.LINE_ID = MMCL.LINE_ID
+AND MMCL.HEADER_ID = MMCH.HEADER_ID
+AND MMCL.CUT_NO = its.cut_no(+) /*This condition added by Azhar*/
+--AND MMCH.POC_ID = :POC_ID
+AND MMCH.R_PLAN_NO = :p_cutplanno
+/* AND NOT EXISTS (
+SELECT *
+FROM mnj_mfg_cutissuance_line mmcl,MNJ_MFG_CUTISSUANCE mmc
+WHERE mmcl.attribute1 = MMCL.CUT_NO
+and mmc.CUTISSUE_ID = mmcl.CUTISSUE_ID
+and mmc.ISSUE_TO = :p_trans_type
+and QUANTITY - ISSUED_QUANTITY = 0
+) */ --comment by Azhar
+GROUP BY MMCL.CUT_NO, MMCH.R_PLAN_NO, its.issue_qty,MMCL.MARKER_ID
+HAVING SUM (NVL (MMCD.CUT_QTY, 0)) > NVL (its.issue_qty, 0)]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="TotalPcs"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="TOTAL_PCS"
+    Expression="TOTAL_PCS"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="10"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TotalIssue"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="TOTAL_ISSUE"
+    Expression="TOTAL_ISSUE"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="22"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="10"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CutNo"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CUT_NO"
+    Expression="CUT_NO"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="RatioplanNumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="32"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="RATIOPLAN_NUMBER"
+    Expression="RATIOPLAN_NUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="10"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MarkerId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="200"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MARKER_ID"
+    Expression="MARKER_ID"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="50"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="mnj.mfg.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

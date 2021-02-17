@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LineVO"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="cutLOV1"
+    ViewObjectName="mnj.mfg.model.lov.views.cutLOV"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="cutNumberLOVvO1"
+    ViewObjectName="mnj.mfg.model.lov.views.cutNumberLOVvO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="cutNumberLOVvO2"
+    ViewObjectName="mnj.mfg.model.lov.views.cutNumberLOVvO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="CunNumberLOV1"
+    ViewObjectName="mnj.mfg.model.lov.CunNumberLOV"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_CutNumber"
+    ListVOName="cutLOV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_CutNumber_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="CutNumber"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Quantity"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CutNo"/>
+      <Item Value="TotalPcs"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CutNo"/>
+      <Item Value="TotalPcs"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Attribute1"
+    ListVOName="CunNumberLOV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_Attribute1_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Attribute1"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Quantity"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CutNo"/>
+      <Item Value="TotalPcs"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CutNo"/>
+      <Item Value="RatioplanNumber"/>
+      <Item Value="TotalPcs"/>
+      <Item Value="MarkerId"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT LineEO.CUTISSUE_LINE_ID, 
+       LineEO.DIVISION_ID, 
+       LineEO.CUTISSUE_ID, 
+       LineEO.REMARKS, 
+       LineEO.CUT_NUMBER, 
+       LineEO.QUANTITY, 
+       LineEO.ATTRIBUTE1, 
+       LineEO.ATTRIBUTE2, 
+       LineEO.ATTRIBUTE3, 
+       LineEO.ATTRIBUTE4, 
+       LineEO.ATTRIBUTE5, 
+       LineEO.ATTRIBUTE6, 
+       LineEO.ATTRIBUTE7, 
+       LineEO.ATTRIBUTE8, 
+       LineEO.ATTRIBUTE9, 
+       LineEO.ATTRIBUTE10, 
+       LineEO.ATTRIBUTE11, 
+       LineEO.ATTRIBUTE12, 
+       LineEO.ATTRIBUTE13, 
+       LineEO.ATTRIBUTE14, 
+       LineEO.ATTRIBUTE15,
+LineEO.Cut_Qty,
+       LineEO.Issued_Quantity,
+       LineEO.Belanc_Qty
+FROM MNJ_MFG_CUTISSUANCE_LINE LineEO]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="LineEO"
+    Entity="mnj.mfg.model.entities.LineEO"/>
+  <ViewAttribute
+    Name="CutissueLineId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="CutissueLineId"
+    EntityUsage="LineEO"
+    AliasName="CUTISSUE_LINE_ID"/>
+  <ViewAttribute
+    Name="DivisionId"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="LineEO"
+    AliasName="DIVISION_ID"/>
+  <ViewAttribute
+    Name="CutissueId"
+    PrecisionRule="true"
+    EntityAttrName="CutissueId"
+    EntityUsage="LineEO"
+    AliasName="CUTISSUE_ID"/>
+  <ViewAttribute
+    Name="Remarks"
+    PrecisionRule="true"
+    EntityAttrName="Remarks"
+    EntityUsage="LineEO"
+    AliasName="REMARKS"/>
+  <ViewAttribute
+    Name="CutNumber"
+    PrecisionRule="true"
+    EntityAttrName="CutNumber"
+    EntityUsage="LineEO"
+    AliasName="CUT_NUMBER"
+    LOVName="LOV_CutNumber">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Quantity"
+    PrecisionRule="true"
+    EntityAttrName="Quantity"
+    EntityUsage="LineEO"
+    AliasName="QUANTITY"/>
+  <ViewAttribute
+    Name="Attribute1"
+    PrecisionRule="true"
+    EntityAttrName="Attribute1"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE1"
+    LOVName="LOV_Attribute1">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+    <DesignTime>
+      <Attr Name="_diagramName" Value="Ratio Plan No"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Attribute2"
+    PrecisionRule="true"
+    EntityAttrName="Attribute2"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE2"/>
+  <ViewAttribute
+    Name="Attribute3"
+    PrecisionRule="true"
+    EntityAttrName="Attribute3"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE3"/>
+  <ViewAttribute
+    Name="Attribute4"
+    PrecisionRule="true"
+    EntityAttrName="Attribute4"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE4"/>
+  <ViewAttribute
+    Name="Attribute5"
+    PrecisionRule="true"
+    EntityAttrName="Attribute5"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE5"/>
+  <ViewAttribute
+    Name="Attribute6"
+    PrecisionRule="true"
+    EntityAttrName="Attribute6"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE6"/>
+  <ViewAttribute
+    Name="Attribute7"
+    PrecisionRule="true"
+    EntityAttrName="Attribute7"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE7"/>
+  <ViewAttribute
+    Name="Attribute8"
+    PrecisionRule="true"
+    EntityAttrName="Attribute8"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE8"/>
+  <ViewAttribute
+    Name="Attribute9"
+    PrecisionRule="true"
+    EntityAttrName="Attribute9"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE9"/>
+  <ViewAttribute
+    Name="Attribute10"
+    PrecisionRule="true"
+    EntityAttrName="Attribute10"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE10"/>
+  <ViewAttribute
+    Name="Attribute11"
+    PrecisionRule="true"
+    EntityAttrName="Attribute11"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE11"/>
+  <ViewAttribute
+    Name="Attribute12"
+    PrecisionRule="true"
+    EntityAttrName="Attribute12"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE12"/>
+  <ViewAttribute
+    Name="Attribute13"
+    PrecisionRule="true"
+    EntityAttrName="Attribute13"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE13"/>
+  <ViewAttribute
+    Name="Attribute14"
+    PrecisionRule="true"
+    EntityAttrName="Attribute14"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE14"/>
+  <ViewAttribute
+    Name="Attribute15"
+    PrecisionRule="true"
+    EntityAttrName="Attribute15"
+    EntityUsage="LineEO"
+    AliasName="ATTRIBUTE15"/>
+  <ViewAttribute
+    Name="CutQty"
+    PrecisionRule="true"
+    EntityAttrName="CutQty"
+    EntityUsage="LineEO"
+    AliasName="CUT_QTY"/>
+  <ViewAttribute
+    Name="IssuedQuantity"
+    PrecisionRule="true"
+    EntityAttrName="IssuedQuantity"
+    EntityUsage="LineEO"
+    AliasName="ISSUED_QUANTITY"/>
+  <ViewAttribute
+    Name="BelancQty"
+    PrecisionRule="true"
+    EntityAttrName="BelancQty"
+    EntityUsage="LineEO"
+    AliasName="BELANC_QTY"/>
+  <ViewLinkAccessor
+    Name="MnjMfgCutissuanceSzlineView"
+    ViewLink="mnj.mfg.model.views.LineDetailVL"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+</ViewObject>

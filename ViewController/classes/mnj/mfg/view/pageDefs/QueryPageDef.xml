@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="QueryPageDef"
+                Package="mnj.mfg.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="MnjMfgCutissuanceView1" RangeSize="25"
+              DataControl="AppModuleDataControl"
+              id="MnjMfgCutissuanceView1Iterator"/>
+    <searchRegion
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="MnjMfgCutissuanceView1Iterator"
+                  id="SearchByCutIssueNoQuery"/>
+    <invokeAction id="setSession" Binds="setSessionValues"
+                  Refresh="renderModel"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="MnjMfgCutissuanceView1Iterator"
+          id="MnjMfgCutissuanceView1">
+      <nodeDefinition DefName="mnj.mfg.model.views.MnjMfgCutissuanceView"
+                      Name="MnjMfgCutissuanceView10">
+        <AttrNames>
+          <Item Value="CutissueNo"/>
+          <Item Value="RangrefNo"/>
+          <Item Value="InseamId"/>
+          <Item Value="CutissueDt"/>
+          <Item Value="Obno"/>
+          <Item Value="SalesorderId"/>
+          <Item Value="RangeNumber"/>
+          <Item Value="CutjobId"/>
+          <Item Value="FgitemCode"/>
+          <Item Value="Buyer"/>
+          <Item Value="Style"/>
+          <Item Value="BpoNo"/>
+          <Item Value="Description"/>
+          <Item Value="IssueTo"/>
+          <Item Value="RationNo"/>
+          <Item Value="LineNo"/>
+          <Item Value="Color"/>
+          <Item Value="Season"/>
+          <Item Value="CurrentSeason"/>
+          <Item Value="CurrentStyle"/>
+          <Item Value="SystemId"/>
+          <Item Value="Colour"/>
+          <Item Value="Wash"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="MnjMfgCutissuanceView1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="MnjMfgCutissuanceView1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <methodAction id="setSessionValues"
+                  InstanceName="AppModuleDataControl.dataProvider"
+                  DataControl="AppModuleDataControl" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="setSessionValues"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="orgId" NDValue="#{viewScope.OrgId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="userId" NDValue="#{viewScope.UserId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respId" NDValue="#{viewScope.RespId}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="respAppl" NDValue="#{viewScope.RespApplId}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+    <action IterBinding="MnjMfgCutissuanceView1Iterator"
+            id="setCurrentRowWithKeyValue" RequiresUpdateModel="false"
+            Action="setCurrentRowWithKeyValue">
+      <NamedData NDName="rowKey" NDType="java.lang.String"/>
+    </action>
+  </bindings>
+</pageDefinition>

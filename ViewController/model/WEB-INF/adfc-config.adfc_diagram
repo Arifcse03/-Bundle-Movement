@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">Query</property>
+      <property
+         name="page">/Query.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Query&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="thumbnailExpanded">false</property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">193.58594</property>
+      <property
+         name="x">197.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View6">
+      <property
+         name="fromOutcome">goEdit</property>
+      <property
+         name="sdm:polyPoints">R46,238.00508,189.73535,515.0,190.1377,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View6"
+      to="View2">
+      <property
+         name="fromOutcome">goBrowse</property>
+      <property
+         name="sdm:polyPoints">L54,514.99493,197.1377,238.0,196.73535,R54</property>
+   </ControlFlowCase>
+   <View
+      id="View6">
+      <property
+         name="activityId">Edit</property>
+      <property
+         name="page">/Edit.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Edit&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="thumbnailExpanded">false</property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">193.98828</property>
+      <property
+         name="x">556.0</property>
+   </View>
+</SDM>

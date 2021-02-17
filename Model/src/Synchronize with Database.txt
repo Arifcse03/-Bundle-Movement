@@ -1,0 +1,6 @@
+The following Synchronization Actions were performed successfully:
+
+Entity :LineEO
+  Create Attribute for column: CUT_QTY
+  Create Attribute for column: ISSUED_QUANTITY
+  Create Attribute for column: BELANC_QTY
