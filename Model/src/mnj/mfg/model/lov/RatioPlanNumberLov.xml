@@ -26,12 +26,13 @@
     <TransientExpression><![CDATA[adf.context.sessionScope.orgId]]></TransientExpression>
   </Variable>
   <SQLQuery>
-    <![CDATA[select  distinct  h.ratioplan_number,s.system_id,S.POC_ID, S.style,S.season,(select ar.CUSTOMER_NAME
+    <![CDATA[select  distinct  h.ratioplan_number,l.system_id,hh.POC_ID, hh.style,hh.season,(select ar.CUSTOMER_NAME
           from ar_customers ar
-         where ar.CUSTOMER_ID = S.buyer_id) Buyer_NAME 
-from MNJ_MFG_RATIOPLAN h, XX_MNJ_BPO_INFO_V S
+         where ar.CUSTOMER_ID = hh.buyer_id) Buyer_NAME 
+from MNJ_MFG_RATIOPLAN h, xx_om_poc_h_t hh,  xx_om_poc_l_t l
   where h.DIVISION_ID = :p_org_id
-  and S.SYSTEM_ID=H.SYSTEM_ID]]>
+  and l.SYSTEM_ID=H.SYSTEM_ID
+  and hh.poc_id=l.poc_id]]>
   </SQLQuery>
   <ViewAttribute
     Name="RatioplanNumber"
