@@ -26,8 +26,9 @@
     <TransientExpression><![CDATA[adf.context.sessionScope.orgId]]></TransientExpression>
   </Variable>
   <SQLQuery>
-    <![CDATA[select DISTINCT SYSTEM_ID, POC_ID, BUYER_ID, SEASON, STYLE, WASH, COLOR from XX_STYLE_COLOR_WASH_V s
-where s.LC_UNIT=:org_id]]>
+    <![CDATA[select DISTINCT l.SYSTEM_ID, h.POC_ID, h.BUYER_ID, h.SEASON, h.STYLE, l.Wash_Name WASH, l.COLOR from xx_om_poc_h_t h,xx_om_poc_l_t l
+where h.LC_UNIT=:org_id
+and h.poc_id=l.poc_id and l.system_id is not null]]>
   </SQLQuery>
   <ViewAttribute
     Name="SystemId"
