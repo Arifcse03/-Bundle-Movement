@@ -11,7 +11,10 @@ import javax.faces.event.ValueChangeEvent;
 
 import javax.servlet.http.HttpSession;
 
+import mnj.mfg.model.services.AppModuleImpl;
+
 import oracle.adf.model.BindingContext;
+import oracle.adf.model.binding.DCBindingContainer;
 import oracle.adf.model.binding.DCDataControl;
 import oracle.adf.view.rich.component.rich.RichPopup;
 import oracle.adf.view.rich.component.rich.data.RichTable;
@@ -778,4 +781,19 @@ Double.parseDouble(r.getAttribute("IssQuantity").toString());
         operationBinding.execute();
         AdfFacesContext.getCurrentInstance().addPartialTarget(selectAllValuesTable);
     }
+
+ 
+    
+    
+    AppModuleImpl appM = getAppModuleImpl();
+
+    public AppModuleImpl getAppModuleImpl() {
+    DCBindingContainer bindingContainer =
+    (DCBindingContainer)BindingContext.getCurrent().getCurrentBindingsEntry();
+    //BindingContext bindingContext = BindingContext.getCurrent();
+    DCDataControl dc =
+    bindingContainer.findDataControl("AppModuleDataControl"); // Name of application module in datacontrolBinding.cpx
+    AppModuleImpl appM = (AppModuleImpl)dc.getDataProvider();
+    return appM;
+    } 
 }

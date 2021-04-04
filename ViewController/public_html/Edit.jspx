@@ -183,7 +183,8 @@
                                     required="#{bindings.SystemId.hints.mandatory}"
                                     columns="#{bindings.SystemId.hints.displayWidth}"
                                     shortDesc="#{bindings.SystemId.hints.tooltip}"
-                                    showRequired="true">
+                                    showRequired="true"
+                                    readOnly="#{bindings.SystemId.inputValue eq null ? 'false' :'true'}">
                 <f:validator binding="#{bindings.SystemId.validator}"/>
                 <af:convertNumber groupingUsed="false"
                                   pattern="#{bindings.SystemId.format}"/>
@@ -255,7 +256,8 @@
                                             autoSubmit="true"
                                             binding="#{MyBean.transactionTypeBind}"
                                             valueChangeListener="#{MyBean.TransactionTypeValueChange}"
-                                            required="true">
+                                            required="true"
+                                            readOnly="#{bindings.IssueTo.inputValue eq null ? 'false' :'true'}">
                 <f:validator binding="#{bindings.IssueTo.validator}"/>
               </af:inputComboboxListOfValues>
               <af:inputListOfValues id="recDocNoId"

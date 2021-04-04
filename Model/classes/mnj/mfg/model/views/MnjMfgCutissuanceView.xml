@@ -469,8 +469,8 @@ AND   SeasonDetailEO.SEASON_IDENTIFIER = MnjMfgCutissuance.SEASON
         s.SEASON,
         s. STYLE,
         s.color as COLOUR,
-        s.WASH
-  FROM MNJ_MFG_CUTISSUANCE MnjMfgCutissuance ,XX_STYLE_COLOR_WASH_V  s
+        s.wash_name WASH
+  FROM MNJ_MFG_CUTISSUANCE MnjMfgCutissuance ,XX_ORDER_INFO_V  s
  WHERE MnjMfgCutissuance.DIVISION_ID =:p_org_id
   and MnjMfgCutissuance.system_id=s.system_id
  ORDER BY CUTISSUE_ID desc]]>
