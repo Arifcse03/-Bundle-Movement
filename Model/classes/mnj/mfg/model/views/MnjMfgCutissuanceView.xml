@@ -465,14 +465,15 @@ AND   SeasonDetailEO.SEASON_IDENTIFIER = MnjMfgCutissuance.SEASON
        when MnjMfgCutissuance.ISSUE_TO like 'Receive%' then 'Receive' else null 
        end Transaction_Type,
        MnjMfgCutissuance.SYSTEM_ID,
-         s.POC_ID, 
-        s.SEASON,
-        s. STYLE,
-        s.color as COLOUR,
-        s.wash_name WASH
-  FROM MNJ_MFG_CUTISSUANCE MnjMfgCutissuance ,XX_ORDER_INFO_V  s
+         ph.POC_ID, 
+        ph.SEASON,
+        ph. STYLE,
+        pl.color as COLOUR,
+        pl.wash_name WASH 
+  FROM MNJ_MFG_CUTISSUANCE MnjMfgCutissuance , xx_om_poc_h_t ph ,xx_om_poc_L_t pl-- ,---XX_ORDER_INFO_V  s
  WHERE MnjMfgCutissuance.DIVISION_ID =:p_org_id
-  and MnjMfgCutissuance.system_id=s.system_id
+  and MnjMfgCutissuance.system_id=pl.system_id
+  and pl.poc_id=ph.poc_id
  ORDER BY CUTISSUE_ID desc]]>
   </SQLQuery>
   <EntityUsage
