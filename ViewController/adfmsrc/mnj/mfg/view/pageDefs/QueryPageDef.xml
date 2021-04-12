@@ -44,6 +44,7 @@
           <Item Value="SystemId"/>
           <Item Value="Colour"/>
           <Item Value="Wash"/>
+          <Item Value="BuyerNew"/>
         </AttrNames>
       </nodeDefinition>
     </tree>

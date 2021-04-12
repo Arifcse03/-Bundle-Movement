@@ -469,11 +469,13 @@ AND   SeasonDetailEO.SEASON_IDENTIFIER = MnjMfgCutissuance.SEASON
         ph.SEASON,
         ph. STYLE,
         pl.color as COLOUR,
-        pl.wash_name WASH 
-  FROM MNJ_MFG_CUTISSUANCE MnjMfgCutissuance , xx_om_poc_h_t ph ,xx_om_poc_L_t pl-- ,---XX_ORDER_INFO_V  s
+        pl.wash_name WASH,
+ac.CUSTOMER_NAME BUYER_NEW
+  FROM MNJ_MFG_CUTISSUANCE MnjMfgCutissuance , xx_om_poc_h_t ph ,xx_om_poc_L_t pl,ar_customers ac
  WHERE MnjMfgCutissuance.DIVISION_ID =:p_org_id
   and MnjMfgCutissuance.system_id=pl.system_id
   and pl.poc_id=ph.poc_id
+AND ph.BUYER_ID = ac.CUSTOMER_ID
  ORDER BY CUTISSUE_ID desc]]>
   </SQLQuery>
   <EntityUsage
@@ -1118,6 +1120,21 @@ AND   SeasonDetailEO.SEASON_IDENTIFIER = MnjMfgCutissuance.SEASON
     SQLType="VARCHAR">
     <DesignTime>
       <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BuyerNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="BUYER_NEW"
+    Expression="BUYER_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
     </DesignTime>
   </ViewAttribute>
   <ViewAttribute

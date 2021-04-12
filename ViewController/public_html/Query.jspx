@@ -75,9 +75,14 @@
                                     disabled="#{!bindings.setCurrentRowWithKeyValue.enabled}"
                                     id="cl1" action="goEdit"/>
                   </af:column>
+                  <af:column headerText="Buyer"
+                             id="c14" align="center" sortable="true"
+                             filterable="true" sortProperty="BuyerNew">
+                    <af:outputText value="#{row.BuyerNew}" id="ot11"/>
+                  </af:column>
                   <af:column headerText="Buyer" id="c1" align="center"
                              sortProperty="Buyer" sortable="true"
-                             filterable="true">
+                             filterable="true" visible="false">
                     <af:inputComboboxListOfValues id="buyerId"
                                                   popupTitle="Search and Select: #{bindings.MnjMfgCutissuanceView1.hints.Buyer.label}"
                                                   value="#{row.bindings.Buyer.inputValue}"

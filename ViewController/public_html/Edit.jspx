@@ -326,7 +326,9 @@
                                     required="#{bindings.RationNo.hints.mandatory}"
                                     columns="#{bindings.RationNo.hints.displayWidth}"
                                     shortDesc="#{bindings.RationNo.hints.tooltip}"
-                                    showRequired="true">
+                                    showRequired="true"
+                                    binding="#{MyBean.rationNo}"
+                                    autoSubmit="true">
                 <f:validator binding="#{bindings.RationNo.validator}"/>
                 <af:autoSuggestBehavior suggestedItems="#{bindings.RationNo.suggestedItems}"/>
               </af:inputListOfValues>

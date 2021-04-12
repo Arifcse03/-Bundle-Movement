@@ -601,6 +601,16 @@ public class MnjMfgCutissuanceViewRowImpl extends ViewRowImpl {
             }
         }
         ,
+        BuyerNew {
+            public Object get(MnjMfgCutissuanceViewRowImpl obj) {
+                return obj.getBuyerNew();
+            }
+
+            public void put(MnjMfgCutissuanceViewRowImpl obj, Object value) {
+                obj.setBuyerNew((String)value);
+            }
+        }
+        ,
         OrderNumber {
             public Object get(MnjMfgCutissuanceViewRowImpl obj) {
                 return obj.getOrderNumber();
@@ -891,6 +901,7 @@ public class MnjMfgCutissuanceViewRowImpl extends ViewRowImpl {
     public static final int STYLE = AttributesEnum.Style.index();
     public static final int COLOUR = AttributesEnum.Colour.index();
     public static final int WASH = AttributesEnum.Wash.index();
+    public static final int BUYERNEW = AttributesEnum.BuyerNew.index();
     public static final int ORDERNUMBER = AttributesEnum.OrderNumber.index();
     public static final int LINEQTYTOTAL = AttributesEnum.LineQtyTotal.index();
     public static final int QTY_TOTAL = AttributesEnum.Qty_Total.index();
@@ -1716,6 +1727,22 @@ public class MnjMfgCutissuanceViewRowImpl extends ViewRowImpl {
         setAttributeInternal(WASH, value);
     }
 
+
+    /**
+     * Gets the attribute value for the calculated attribute BuyerNew.
+     * @return the BuyerNew
+     */
+    public String getBuyerNew() {
+        return (String) getAttributeInternal(BUYERNEW);
+    }
+
+    /**
+     * Sets <code>value</code> as the attribute value for the calculated attribute BuyerNew.
+     * @param value value to set the  BuyerNew
+     */
+    public void setBuyerNew(String value) {
+        setAttributeInternal(BUYERNEW, value);
+    }
 
     /**
      * Gets the attribute value for ISSUE_TO_ORG using the alias name IssueToOrg.
