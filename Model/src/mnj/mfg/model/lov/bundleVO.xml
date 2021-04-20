@@ -48,10 +48,11 @@
              WHERE LL.CUTISSUE_LINE_ID = DD.CUTISSUE_LINE_ID
                AND LL.CUTISSUE_ID = HHH.CUTISSUE_ID
                AND DD.BANDEL_NO       = d.bundle_no
-               AND HHH.BUYER_ID = HH.BUYER_ID
+                  AND HHH.SYSTEM_ID = HH.SYSTEM_ID
+            --AND HHH.BUYER_ID = HH.BUYER_ID
                and HHH.ISSUE_TO    = :p_trans_type
-               AND HHH.STYLE = HH.STYLE 
-               AND HHH.SEASON = HH.SEASON
+             --  AND HHH.STYLE = HH.STYLE 
+              -- AND HHH.SEASON = HH.SEASON
                and ll.attribute1 = l.cut_no)   
 order by d.bundle_no]]>
   </SQLQuery>

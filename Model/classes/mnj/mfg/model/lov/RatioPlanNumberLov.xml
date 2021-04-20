@@ -25,14 +25,35 @@
     Type="java.lang.String">
     <TransientExpression><![CDATA[adf.context.sessionScope.orgId]]></TransientExpression>
   </Variable>
+  <Variable
+    Name="system_id"
+    Kind="where"
+    Type="java.lang.String"/>
   <SQLQuery>
-    <![CDATA[select  distinct  h.ratioplan_number,l.system_id,hh.POC_ID, hh.style,hh.season,(select ar.CUSTOMER_NAME
+    <![CDATA[/*select  distinct  h.ratioplan_number,l.system_id,hh.POC_ID, hh.style,hh.season,(select ar.CUSTOMER_NAME
           from ar_customers ar
          where ar.CUSTOMER_ID = hh.buyer_id) Buyer_NAME 
 from MNJ_MFG_RATIOPLAN h, xx_om_poc_h_t hh,  xx_om_poc_l_t l
   where h.DIVISION_ID = :p_org_id
   and l.SYSTEM_ID=H.SYSTEM_ID
-  and hh.poc_id=l.poc_id]]>
+  and hh.poc_id=l.poc_id*/
+
+
+/* Formatted on 4/20/2021 1:35:27 PM (QP5 v5.256.13226.35510) */
+SELECT DISTINCT h.ratioplan_number,
+                l.system_id,
+                hh.POC_ID,
+                hh.style,
+                hh.season,
+                (SELECT ar.CUSTOMER_NAME
+                   FROM ar_customers ar
+                  WHERE ar.CUSTOMER_ID = hh.buyer_id)
+                   Buyer_NAME
+  FROM MNJ_MFG_RATIOPLAN h, xx_om_poc_h_t hh, xx_om_poc_l_t l
+ WHERE     h.DIVISION_ID = :p_org_id
+       AND l.SYSTEM_ID = H.SYSTEM_ID
+       AND hh.poc_id = l.poc_id
+      AND l.system_id = :system_id]]>
   </SQLQuery>
   <ViewAttribute
     Name="RatioplanNumber"
@@ -159,6 +180,42 @@ from MNJ_MFG_RATIOPLAN h, xx_om_poc_h_t hh,  xx_om_poc_l_t l
       </SchemaBasedProperties>
     </Properties>
   </ViewAttribute>
+  <ViewCriteria
+    Name="RatioPlanNumberLovCriteria"
+    ViewObjectName="mnj.mfg.model.lov.RatioPlanNumberLov"
+    Conjunction="AND">
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow1"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="SystemId"
+        ViewAttribute="SystemId"
+        Operator="="
+        Conjunction="AND"
+        Required="Optional"
+        Value=":system_id"
+        IsBindVarValue="true"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="mnj.mfg.model.ModelBundle"/>

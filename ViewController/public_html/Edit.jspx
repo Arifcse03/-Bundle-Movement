@@ -184,7 +184,8 @@
                                     columns="#{bindings.SystemId.hints.displayWidth}"
                                     shortDesc="#{bindings.SystemId.hints.tooltip}"
                                     showRequired="true"
-                                    readOnly="#{bindings.SystemId.inputValue eq null ? 'false' :'true'}">
+                                    readOnly="#{bindings.SystemId.inputValue eq null ? 'false' :'true'}"
+                                    autoSubmit="true">
                 <f:validator binding="#{bindings.SystemId.validator}"/>
                 <af:convertNumber groupingUsed="false"
                                   pattern="#{bindings.SystemId.format}"/>
@@ -328,7 +329,8 @@
                                     shortDesc="#{bindings.RationNo.hints.tooltip}"
                                     showRequired="true"
                                     binding="#{MyBean.rationNo}"
-                                    autoSubmit="true">
+                                    autoSubmit="true"
+                                    partialTriggers="systemIdId">
                 <f:validator binding="#{bindings.RationNo.validator}"/>
                 <af:autoSuggestBehavior suggestedItems="#{bindings.RationNo.suggestedItems}"/>
               </af:inputListOfValues>

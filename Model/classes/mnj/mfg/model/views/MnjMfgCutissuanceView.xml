@@ -122,8 +122,16 @@
     RowLevelBinds="true"/>
   <ViewAccessor
     Name="RatioPlanNumberLov1"
-    ViewObjectName="mnj.mfg.model.lov.RatioPlanNumberLov"
-    RowLevelBinds="true"/>
+    ViewObjectName="mnj.mfg.model.lov.RatioPlanNumberLov">
+    <ViewCriteriaUsage
+      Name="RatioPlanNumberLovCriteria"
+      FullName="mnj.mfg.model.lov.RatioPlanNumberLov.RatioPlanNumberLovCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="system_id">
+        <TransientExpression><![CDATA[SystemId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
   <ViewAccessor
     Name="SystemLovOpMiz1"
     ViewObjectName="mnj.mfg.model.lov.SystemLovOpMiz"
